@@ -8,7 +8,7 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
       const response = await fetch('http://localhost:8080/api/login', {
         method: 'POST',
@@ -17,9 +17,9 @@ function App() {
         },
         body: JSON.stringify({ username, password }),
       });
-      
+
       const data = await response.json();
-      
+
       if (response.ok) {
         setMessage('Login successful!');
       } else {
@@ -37,7 +37,7 @@ function App() {
         <div className="decoration-dots top-right"></div>
         <div className="decoration-dots bottom-left"></div>
         <div className="decoration-dots bottom-right"></div>
-        
+
         <div className="login-header">
           <div className="login-icon">
             <i className="icon-user"></i>
@@ -45,7 +45,7 @@ function App() {
           <h2 className="login-title">Welcome Back</h2>
           <p className="login-subtitle">Please sign in to continue</p>
         </div>
-        
+
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Username:</label>
@@ -59,7 +59,7 @@ function App() {
               />
             </div>
           </div>
-          
+
           <div className="form-group">
             <label>Password:</label>
             <div className="input-wrapper">
@@ -72,28 +72,31 @@ function App() {
               />
             </div>
           </div>
-          
+
           <div className="form-options">
             <label className="remember-me">
               <input type="checkbox" />
               <span>Remember me</span>
             </label>
-            <a href="#" className="forgot-password">Forgot Password?</a>
           </div>
-          
+
           <button type="submit" className="login-button">
             Sign In
           </button>
         </form>
-        
+
         {message && (
           <div className={`message ${message.includes('successful') ? 'success' : 'error'}`}>
             {message}
           </div>
         )}
-        
+
         <div className="login-footer">
-          <p>Don't have an account? <a href="#">Sign up</a></p>
+          <p>
+            Don't have an account?{' '}
+            {/* 🔥 Fixed href problem here */}
+            <a href="/signup">Sign up</a>
+          </p>
         </div>
       </div>
     </div>
